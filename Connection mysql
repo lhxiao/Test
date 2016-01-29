@@ -1,0 +1,30 @@
+package cn.bat.lesson4;
+
+import java.sql.DriverManager;
+
+import com.mysql.jdbc.Connection;
+
+public class ConDB {
+	/**
+	 * 1.加载驱动
+	 * 2.得到数据库连接
+	 * 3.创建sql对象(Statement/PreparedStatement/CallableStatement)
+	 * 4.通过sql对象向数据库发出sql指令
+	 * 5.关闭资源，先打开的后关闭
+	 */
+	private String driverName="com.mysql.jdbc.Driver";
+	private String dbURL="jdbc:mysql://localhost:3306/bookshop";
+	private String userName="root";
+	private String userPwd="root";
+	Connection dbConn=null;
+	public Connection getCont(){
+		try {
+			Class.forName(driverName);//加载驱动
+			dbConn=(Connection) DriverManager.getConnection(dbURL, userName, userPwd);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dbConn;
+	}
+}
+
